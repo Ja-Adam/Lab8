@@ -1,0 +1,69 @@
+<html>
+
+<head>
+    <title>Temperature Conversion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .converter-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .input-container {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            color: #333;
+        }
+    </style>
+
+</head>
+
+<body>
+    <?php
+    if (isset($_GET['fahrenheit'])) {
+        $fahrenheit = $_GET['fahrenheit'];
+    } else {
+        $fahrenheit = null;
+    }
+    if (is_null($fahrenheit)) {
+    ?>
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="GET">
+            Fahrenheit temperature: <input type="text" name="fahrenheit" /><br />
+            <input type="submit" value="Convert to Celsius!" />
+        </form>
+    <?php
+    } else {
+        $celsius = ($fahrenheit - 32) * 5 / 9;
+        printf("%.2fF is %.2fC", $fahrenheit, $celsius);
+    }
+    ?>
+</body>
+
+</html>
